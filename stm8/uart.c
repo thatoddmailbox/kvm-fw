@@ -23,3 +23,10 @@ void uart_write_byte(char c) {
 	// send byte
 	*UART1_DR = c;
 }
+
+void uart_write_string(char * s) {
+	while (*s) {
+		uart_write_byte(*s);
+		s++;
+	}
+}
