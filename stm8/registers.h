@@ -51,6 +51,25 @@
 #define PF_CR2 reg8(PF_BASE + 0x04)
 
 /*
+ * CLK
+ */
+#define CLK_BASE 0x0050C0
+#define CLK_ICKR reg8(CLK_BASE + 0x00)
+#define CLK_ECKR reg8(CLK_BASE + 0x01)
+// reserved area (1 byte)
+#define CLK_CMSR reg8(CLK_BASE + 0x03)
+#define CLK_SWR reg8(CLK_BASE + 0x04)
+#define CLK_SWCR reg8(CLK_BASE + 0x05)
+#define CLK_CKDIVR reg8(CLK_BASE + 0x06)
+#define CLK_PCKENR1 reg8(CLK_BASE + 0x07)
+#define CLK_CSSR reg8(CLK_BASE + 0x08)
+#define CLK_CCOR reg8(CLK_BASE + 0x09)
+#define CLK_PCKENR2 reg8(CLK_BASE + 0x0A)
+// reserved area (1 byte)
+#define CLK_HSITRIMR reg8(CLK_BASE + 0x0C)
+#define CLK_SWIMCCR reg8(CLK_BASE + 0x0D)
+
+/*
  * UART1
  */
 #define UART1_BASE 0x005230
