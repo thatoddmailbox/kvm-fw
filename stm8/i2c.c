@@ -79,3 +79,19 @@ bool i2c_write_address(uint8_t addr) {
 
 	return true;
 }
+
+bool i2c_write_reg(uint8_t addr, uint8_t reg, uint8_t data) {
+	i2c_start();
+
+	bool response = i2c_write_address(addr | I2C_WRITE);
+	if (!response) {
+		i2c_stop();
+		return false;
+	}
+	i2c_write(reg);
+	i2c_write(data);
+
+	i2c_stop();
+
+	return true;
+}

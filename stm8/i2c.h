@@ -13,5 +13,6 @@ void i2c_stop();
 uint8_t i2c_read(bool should_ack);
 void i2c_write(uint8_t data);
 bool i2c_write_address(uint8_t addr);
+bool i2c_write_reg(uint8_t addr, uint8_t reg, uint8_t data);
 
 #endif
