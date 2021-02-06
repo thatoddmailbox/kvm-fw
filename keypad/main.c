@@ -57,14 +57,5 @@ int main() {
 		}
 	}
 
-	while (1) {
-		uart_write_string("yay\r\n");
-		for (unsigned short q = 0; q < 100; q++) {
-			for (unsigned short i = 0; i < 16000; i++) {
-				__asm__("nop");
-			}
-		}
-	}
-
 	return 0;
 }
