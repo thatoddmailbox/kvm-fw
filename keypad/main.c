@@ -16,8 +16,23 @@ int main() {
 	pcal6416a_init();
 
 	is31fl3218_set_brightness(0x80);
-	is31fl3218_set_leds(1);
-	is31fl3218_update();
+
+	uint16_t led_state = 1;
+	while (1) {
+		is31fl3218_set_leds(led_state);
+		is31fl3218_update();
+
+		led_state = led_state << 1;
+		if (led_state == (1 << 9)) {
+			led_state = 1;
+		}
+
+		for (unsigned short y = 0; y < 20; y++) {
+			for (unsigned short z = 0; z < 16000; z++) {
+				__asm__("nop");
+			}
+		}
+	}
 
 	char c = '1';
 	while (1) {
