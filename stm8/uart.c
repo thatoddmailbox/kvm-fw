@@ -1,3 +1,4 @@
+#include "stm8/uart.h"
 #include "stm8/registers.h"
 
 void uart_init() {
