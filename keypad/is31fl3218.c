@@ -23,10 +23,10 @@ void is31fl3218_set_brightness(uint8_t b) {
 }
 
 void is31fl3218_set_leds(uint16_t leds) {
-	uint8_t ctrl1 = (uint8_t) leds & 0x3F;
+	uint8_t ctrl1 = (uint8_t) (leds & 0x3F);
 	i2c_write_reg(IS31FL3218_ADDRESS, IS31FL3218_REG_LED_1, ctrl1);
 
-	uint8_t ctrl2 = (uint8_t) (leds & 0xFC0) >> 6;
+	uint8_t ctrl2 = (uint8_t) ((leds & 0xFC0) >> 6);
 	i2c_write_reg(IS31FL3218_ADDRESS, IS31FL3218_REG_LED_2, ctrl2);
 }
 
