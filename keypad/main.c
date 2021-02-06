@@ -3,8 +3,7 @@
 #include "stm8/uart.h"
 
 #include "keypad/is31fl3218.h"
-
-#define PCAL6416_ADDRESS 0x40
+#include "keypad/pcal6416a.h"
 
 int main() {
 	clock_init();
@@ -14,9 +13,24 @@ int main() {
 	uart_write_string("Hello\r\n");
 
 	is31fl3218_init();
+	pcal6416a_init();
+
 	is31fl3218_set_brightness(0x80);
 	is31fl3218_set_leds(1);
 	is31fl3218_update();
+
+	char c = '1';
+	while (1) {
+		uint16_t pins = pcal6416a_read_pins();
+		if (pins != 0) {
+			uart_write_byte(c);
+			uart_write_string("\r\n");
+			c++;
+			if (c >= '9') {
+				c = '1';
+			}
+		}
+	}
 
 	uint8_t b = 0;
 	bool dir = true;
@@ -34,6 +48,10 @@ int main() {
 		}
 		is31fl3218_set_brightness(b);
 		is31fl3218_update();
+
+		for (unsigned short i = 0; i < 100; i++) {
+			__asm__("nop");
+		}
 	}
 
 	while (1) {
