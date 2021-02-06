@@ -13,11 +13,44 @@ int main() {
 	uart_write_string("Hello\r\n");
 
 	i2c_start();
-	uart_write_string("started\r\n");
-	bool response = i2c_write_address(PCAL6416_ADDRESS);
-	uart_write_string("wrote\r\n");
+	bool response = i2c_write_address(IS31FL3218_ADDRESS | I2C_WRITE);
 	if (response) {
 		uart_write_string("found\r\n");
+		i2c_write(0x0);
+		i2c_write(0x1);
+	} else {
+		uart_write_string("not found\r\n");
+	}
+	i2c_stop();
+
+	i2c_start();
+	response = i2c_write_address(IS31FL3218_ADDRESS | I2C_WRITE);
+	if (response) {
+		uart_write_string("found\r\n");
+		i2c_write(0x1);
+		i2c_write(0x04);
+	} else {
+		uart_write_string("not found\r\n");
+	}
+	i2c_stop();
+
+	i2c_start();
+	response = i2c_write_address(IS31FL3218_ADDRESS | I2C_WRITE);
+	if (response) {
+		uart_write_string("found\r\n");
+		i2c_write(0x13);
+		i2c_write(0x1);
+	} else {
+		uart_write_string("not found\r\n");
+	}
+	i2c_stop();
+
+	i2c_start();
+	response = i2c_write_address(IS31FL3218_ADDRESS | I2C_WRITE);
+	if (response) {
+		uart_write_string("found\r\n");
+		i2c_write(0x16);
+		i2c_write(0x0);
 	} else {
 		uart_write_string("not found\r\n");
 	}
