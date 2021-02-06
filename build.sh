@@ -9,4 +9,5 @@ sdcc -c $CFLAGS uart.c
 cd ..
 
 cd keypad
-sdcc $CFLAGS main.c ../stm8/i2c.rel ../stm8/uart.rel
+sdcc -c $CFLAGS is31fl3218.c
+sdcc $CFLAGS main.c is31fl3218.rel ../stm8/i2c.rel ../stm8/uart.rel
