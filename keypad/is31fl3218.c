@@ -2,6 +2,12 @@
 #include "stm8/i2c.h"
 
 bool is31fl3218_init() {
+	// reset its state
+	bool response = i2c_write_reg(IS31FL3218_ADDRESS, IS31FL3218_REG_RESET, 0);
+	if (!response) {
+		return response;
+	}
+
 	// disable shutdown mode
 	return i2c_write_reg(IS31FL3218_ADDRESS, IS31FL3218_REG_SHUTDOWN, 1);
 }
