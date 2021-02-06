@@ -2,8 +2,9 @@
 #include "stm8/i2c.h"
 #include "stm8/uart.h"
 
+#include "keypad/is31fl3218.h"
+
 #define PCAL6416_ADDRESS 0x40
-#define IS31FL3218_ADDRESS 0xA8
 
 int main() {
 	clock_init();
@@ -12,49 +13,28 @@ int main() {
 
 	uart_write_string("Hello\r\n");
 
-	i2c_start();
-	bool response = i2c_write_address(IS31FL3218_ADDRESS | I2C_WRITE);
-	if (response) {
-		uart_write_string("found\r\n");
-		i2c_write(0x0);
-		i2c_write(0x1);
-	} else {
-		uart_write_string("not found\r\n");
-	}
-	i2c_stop();
+	is31fl3218_init();
+	is31fl3218_set_brightness(0x80);
+	is31fl3218_set_leds(1);
+	is31fl3218_update();
 
-	i2c_start();
-	response = i2c_write_address(IS31FL3218_ADDRESS | I2C_WRITE);
-	if (response) {
-		uart_write_string("found\r\n");
-		i2c_write(0x1);
-		i2c_write(0x04);
-	} else {
-		uart_write_string("not found\r\n");
+	uint8_t b = 0;
+	bool dir = true;
+	while (1) {
+		if (dir) {
+			b++;
+			if (b == 0) {
+				dir = false;
+			}
+		} else {
+			b--;
+			if (b == 0) {
+				dir = true;
+			}
+		}
+		is31fl3218_set_brightness(b);
+		is31fl3218_update();
 	}
-	i2c_stop();
-
-	i2c_start();
-	response = i2c_write_address(IS31FL3218_ADDRESS | I2C_WRITE);
-	if (response) {
-		uart_write_string("found\r\n");
-		i2c_write(0x13);
-		i2c_write(0x1);
-	} else {
-		uart_write_string("not found\r\n");
-	}
-	i2c_stop();
-
-	i2c_start();
-	response = i2c_write_address(IS31FL3218_ADDRESS | I2C_WRITE);
-	if (response) {
-		uart_write_string("found\r\n");
-		i2c_write(0x16);
-		i2c_write(0x0);
-	} else {
-		uart_write_string("not found\r\n");
-	}
-	i2c_stop();
 
 	while (1) {
 		uart_write_string("yay\r\n");
