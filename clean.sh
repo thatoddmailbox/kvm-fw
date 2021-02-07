@@ -1,3 +1,4 @@
+#!/bin/sh
 cd stm8
 rm *.asm
 rm *.cdb
