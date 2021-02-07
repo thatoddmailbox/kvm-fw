@@ -21,3 +21,4 @@ cd ..
 
 cd keypad
 clean_sdcc
+cd ..
