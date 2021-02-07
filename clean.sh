@@ -9,6 +9,7 @@ rm *.map
 rm *.rel
 rm *.rst
 rm *.sym
+cd ..
 
 cd base
 rm *.asm
@@ -20,6 +21,7 @@ rm *.map
 rm *.rel
 rm *.rst
 rm *.sym
+cd ..
 
 cd keypad
 rm *.asm
