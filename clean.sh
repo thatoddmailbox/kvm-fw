@@ -5,7 +5,6 @@ rm *.ihx
 rm *.lk
 rm *.lst
 rm *.map
-rm *.mem
 rm *.rel
 rm *.rst
 rm *.sym
