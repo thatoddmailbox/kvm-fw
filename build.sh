@@ -8,6 +8,10 @@ sdcc -c $CFLAGS i2c.c
 sdcc -c $CFLAGS uart.c
 cd ..
 
+cd base
+sdcc $CFLAGS main.c ../stm8/i2c.rel ../stm8/uart.rel
+cd ..
+
 cd keypad
 sdcc -c $CFLAGS is31fl3218.c
 sdcc -c $CFLAGS pcal6416a.c
