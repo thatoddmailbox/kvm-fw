@@ -11,4 +11,4 @@ You should connect the ground, nRST, and SWIM pins from the board to your ST-LIN
 If you want to read debug messages, then you should also connect a USB-to-UART adapter to the TX, RX, and GND pins. The UART is 8N1 at 57600 baud.
 
 ## Building
-Run the `./build.sh` script to build the base and keypad firmwares. The final outputs will be two Intel HEX files, `base/main.ihx` and `keypad/main.ihx`. The `./upload-base.sh` and `./upload-keypad.sh` scripts will upload the respective firmware to a connected STM8S003F3.
+Run the `./build.sh` script to build both the base and keypad firmwares. The final output will be two Intel HEX files, `base/main.ihx` and `keypad/main.ihx`. The `./upload-base.sh` and `./upload-keypad.sh` scripts will upload the respective firmware to a connected STM8S003F3.
