@@ -15,7 +15,7 @@ int main() {
 	is31fl3218_init();
 	pcal6416a_init();
 
-	is31fl3218_set_brightness(0x1);
+	is31fl3218_set_brightness(0x4);
 
 	char c = '1';
 	uint16_t led_state = 0;
