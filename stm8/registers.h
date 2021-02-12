@@ -160,4 +160,17 @@
 #define UART_CR2_RWU (1 << 1)
 #define UART_CR2_SBK (1 << 0)
 
+/*
+ * TIM4
+ */
+#define TIM4_BASE 0x005340
+#define TIM4_CR1 (TIM4_BASE + 0x00)
+// reserved area (2 bytes)
+#define TIM4_IER (TIM4_BASE + 0x03)
+#define TIM4_SR (TIM4_BASE + 0x04)
+#define TIM4_EGR (TIM4_BASE + 0x05)
+#define TIM4_CNTR (TIM4_BASE + 0x06)
+#define TIM4_PSCR (TIM4_BASE + 0x07)
+#define TIM4_ARR (TIM4_BASE + 0x08)
+
 #endif
