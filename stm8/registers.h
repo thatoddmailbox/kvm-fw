@@ -164,13 +164,19 @@
  * TIM4
  */
 #define TIM4_BASE 0x005340
-#define TIM4_CR1 (TIM4_BASE + 0x00)
+#define TIM4_CR1 reg8(TIM4_BASE + 0x00)
 // reserved area (2 bytes)
-#define TIM4_IER (TIM4_BASE + 0x03)
-#define TIM4_SR (TIM4_BASE + 0x04)
-#define TIM4_EGR (TIM4_BASE + 0x05)
-#define TIM4_CNTR (TIM4_BASE + 0x06)
-#define TIM4_PSCR (TIM4_BASE + 0x07)
-#define TIM4_ARR (TIM4_BASE + 0x08)
+#define TIM4_IER reg8(TIM4_BASE + 0x03)
+#define TIM4_SR reg8(TIM4_BASE + 0x04)
+#define TIM4_EGR reg8(TIM4_BASE + 0x05)
+#define TIM4_CNTR reg8(TIM4_BASE + 0x06)
+#define TIM4_PSCR reg8(TIM4_BASE + 0x07)
+#define TIM4_ARR reg8(TIM4_BASE + 0x08)
+
+#define TIM4_CR1_ARPE (1 << 7)
+#define TIM4_CR1_OPM (1 << 3)
+#define TIM4_CR1_URS (1 << 2)
+#define TIM4_CR1_UDIS (1 << 1)
+#define TIM4_CR1_CEN (1 << 0)
 
 #endif
