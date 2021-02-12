@@ -5,11 +5,12 @@ CFLAGS="--std-c11 -mstm8 -I../"
 
 cd stm8
 sdcc -c $CFLAGS i2c.c
+sdcc -c $CFLAGS timer.c
 sdcc -c $CFLAGS uart.c
 cd ..
 
 cd base
-sdcc $CFLAGS main.c ../stm8/i2c.rel ../stm8/uart.rel
+sdcc $CFLAGS main.c ../stm8/i2c.rel ../stm8/timer.rel ../stm8/uart.rel
 cd ..
 
 cd keypad
