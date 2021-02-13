@@ -8,3 +8,5 @@
 *.rel
 *.rst
 *.sym
+
+*.bin
