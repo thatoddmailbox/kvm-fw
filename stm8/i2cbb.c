@@ -63,7 +63,7 @@ void i2cbb_stop() {
 	WAIT_PERIOD();
 }
 
-void i2cbb_bit(bool bit) {
+inline void i2cbb_bit(bool bit) {
 	if (bit) {
 		A_SDA_HIGH();
 	} else {
