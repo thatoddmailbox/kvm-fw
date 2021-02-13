@@ -117,6 +117,20 @@ bool i2cbb_write(uint8_t data) {
 	A_SCL_HIGH();
 	bool nack = A_SDA_READ();
 	WAIT_HALF_PERIOD();
+
+	// before the falling edge of SCL, we repeat the ack/nack bit we just read to SDA
+	// this is because once SCL goes low, the chip we're talking to floats SDA, and we still have it as an input
+	// so it would get pulled high and then immediately set low on our next write, causing a blip
+	// the blip doesn't really interfere with anything, since no one tries to read at that time
+	// so doing this is somewhat extra/perfectionist
+	// see github issue #1 for more details
+	if (nack) {
+		A_SDA_HIGH();
+	} else {
+		A_SDA_LOW();
+	}
+	A_OUT();
+
 	A_SCL_LOW();
 	return !nack;
 }
