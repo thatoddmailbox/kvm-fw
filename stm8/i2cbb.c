@@ -89,7 +89,7 @@ uint8_t i2cbb_read() {
 		A_SCL_LOW();
 		WAIT_HALF_PERIOD();
 		A_SCL_HIGH();
-		WAIT_HALF_PERIOD();
+		WAIT_QUARTER_PERIOD();
 		data = data << 1;
 		if (A_SDA_READ()) {
 			data += 1;
