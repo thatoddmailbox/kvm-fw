@@ -24,8 +24,8 @@
 #define STR_IMPL_(x) #x
 #define STR(x) STR_IMPL_(x)
 
-#define A_IN() __asm__("bres " STR(I2CBB_DDR) ", #" STR(I2CBB_A_SDA) "\n" "bres " STR(I2CBB_DDR) ", #" STR(I2CBB_A_SCL));
-#define A_OUT() __asm__("bset " STR(I2CBB_DDR) ", #" STR(I2CBB_A_SDA) "\n" "bset " STR(I2CBB_DDR) ", #" STR(I2CBB_A_SCL));
+#define A_IN() __asm__("bres " STR(I2CBB_DDR) ", #" STR(I2CBB_A_SDA));
+#define A_OUT() __asm__("bset " STR(I2CBB_DDR) ", #" STR(I2CBB_A_SDA));
 #define A_SDA_HIGH() __asm__("bset " STR(I2CBB_ODR) ", #" STR(I2CBB_A_SDA));
 #define A_SCL_HIGH() __asm__("bset " STR(I2CBB_ODR) ", #" STR(I2CBB_A_SCL));
 #define A_SDA_LOW() __asm__("bres " STR(I2CBB_ODR) ", #" STR(I2CBB_A_SDA));
@@ -38,9 +38,12 @@
 #define WAIT_QUARTER_PERIOD() timer_delay_us(10)
 
 void i2cbb_init() {
-	A_OUT();
 	A_SDA_HIGH();
 	A_SCL_HIGH();
+
+	// we are always in control of SCL
+	__asm__("bset " STR(I2CBB_DDR) ", #" STR(I2CBB_A_SCL));
+	A_OUT();
 }
 
 void i2cbb_start() {
