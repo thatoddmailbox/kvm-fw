@@ -1,5 +1,5 @@
-#ifndef _TIMER_H
-#define _TIMER_H
+#ifndef _STM8_TIMER_H
+#define _STM8_TIMER_H
 
 #include <stdint.h>
 
