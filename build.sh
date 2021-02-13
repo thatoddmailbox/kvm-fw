@@ -5,6 +5,7 @@ CFLAGS="--std-c11 -mstm8 -I../"
 
 cd stm8
 sdcc -c $CFLAGS i2c.c
+sdcc -c $CFLAGS i2cbb.c
 sdcc -c $CFLAGS timer.c
 sdcc -c $CFLAGS uart.c
 cd ..
