@@ -99,13 +99,14 @@ uint8_t i2cbb_read() {
 
 	A_OUT();
 	A_SCL_LOW();
-	i2cbb_bit(false);
+	i2cbb_bit(true);
 
 	return data;
 }
 
 bool i2cbb_write(uint8_t data) {
 	A_SCL_LOW();
+	A_OUT();
 
 	for (uint8_t i = 8; i > 0; i--) {
 		i2cbb_bit(data & (1 << (i - 1)));
