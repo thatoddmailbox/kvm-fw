@@ -47,13 +47,14 @@ void i2cbb_init() {
 }
 
 void i2cbb_start() {
-	A_OUT();
 	A_SDA_HIGH();
 	A_SCL_HIGH();
+	A_OUT();
 	WAIT_PERIOD();
 	A_SDA_LOW();
 	WAIT_PERIOD();
 	A_SCL_LOW();
+	WAIT_PERIOD();
 }
 
 void i2cbb_stop() {
@@ -61,12 +62,13 @@ void i2cbb_stop() {
 	A_SDA_LOW();
 	A_SCL_LOW();
 	WAIT_PERIOD();
-	A_SDA_HIGH();
 	A_SCL_HIGH();
+	WAIT_PERIOD();
+	A_SDA_HIGH();
 	WAIT_PERIOD();
 }
 
-inline void i2cbb_bit(bool bit) {
+void i2cbb_bit(bool bit) {
 	if (bit) {
 		A_SDA_HIGH();
 	} else {
@@ -102,11 +104,18 @@ uint8_t i2cbb_read() {
 	return data;
 }
 
-void i2cbb_write(uint8_t data) {
+bool i2cbb_write(uint8_t data) {
 	A_SCL_LOW();
 
-	for (uint8_t i = 7; i >= 0; i--) {
-		i2cbb_bit(data & (1 << i));
-		WAIT_HALF_PERIOD();
+	for (uint8_t i = 8; i > 0; i--) {
+		i2cbb_bit(data & (1 << (i - 1)));
 	}
+
+	A_IN();
+	WAIT_HALF_PERIOD();
+	A_SCL_HIGH();
+	bool nack = A_SDA_READ();
+	WAIT_HALF_PERIOD();
+	A_SCL_LOW();
+	return !nack;
 }
