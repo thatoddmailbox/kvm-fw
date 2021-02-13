@@ -53,6 +53,16 @@ void i2cbb_start() {
 	A_SCL_LOW();
 }
 
+void i2cbb_stop() {
+	A_OUT();
+	A_SDA_LOW();
+	A_SCL_LOW();
+	WAIT_PERIOD();
+	A_SDA_HIGH();
+	A_SCL_HIGH();
+	WAIT_PERIOD();
+}
+
 void i2cbb_bit(bool bit) {
 	if (bit) {
 		A_SDA_HIGH();
