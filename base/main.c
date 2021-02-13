@@ -21,22 +21,25 @@ int main() {
 
 	i2cbb_init();
 
+	// select port 2
 	i2cbb_start();
-	bool ack = i2cbb_write((0x2C << 1));
-	if (ack) {
-		uart_write_string("ack\r\n");
-	} else {
-		uart_write_string("nack\r\n");
-	}
+	i2cbb_write((0x2C << 1));
+	i2cbb_write(0x01);
+	i2cbb_write(0x90);
+	i2cbb_stop();
+
+	// read status register
+	i2cbb_start();
+	i2cbb_write((0x2C << 1));
 	i2cbb_write(0x02);
 	i2cbb_stop();
 	i2cbb_start();
 	i2cbb_write((0x2C << 1) | 1);
 	uint8_t value = i2cbb_read();
+	i2cbb_stop();
 	num_to_hex(value);
 	uart_write_string(hex_output);
 	uart_write_string("\r\n");
-	i2cbb_stop();
 
 	while (1) {
 		uart_write_string("yay\r\n");
