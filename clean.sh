@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 clean_sdcc() {
 	rm *.asm 2> /dev/null
 	rm *.cdb 2> /dev/null
