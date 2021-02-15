@@ -11,7 +11,8 @@ sdcc -c $CFLAGS uart.c
 cd ..
 
 cd base
-sdcc $CFLAGS main.c ../stm8/i2cbb.rel ../stm8/timer.rel ../stm8/uart.rel
+sdcc -c $CFLAGS fsusb74.c
+sdcc $CFLAGS main.c fsusb74.rel ../stm8/i2cbb.rel ../stm8/timer.rel ../stm8/uart.rel
 cd ..
 
 cd keypad
