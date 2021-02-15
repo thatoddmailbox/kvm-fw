@@ -3,6 +3,8 @@
 #include "stm8/timer.h"
 #include "stm8/uart.h"
 
+#include "base/fsusb74.h"
+
 char hex[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
 char hex_output[3];
 
@@ -16,6 +18,9 @@ int main() {
 	clock_init();
 	timer_init();
 	uart_init();
+
+	fsusb74_init();
+	fsusb74_select_port(2);
 
 	uart_write_string("Hello from base\r\n");
 
