@@ -19,5 +19,20 @@ void fsusb74_init() {
 }
 
 void fsusb74_select_port(uint8_t index) {
+	// TODO: use bset/bres instructions? would it help with code size?
+	if ((index & 0x2) != 0) {
+		// set sel1
+		*FSUSB74_PORT_REGISTER(ODR) |= (1 << FSUSB74_PIN_SEL1);
+	} else {
+		// clear sel1
+		*FSUSB74_PORT_REGISTER(ODR) &= ~(1 << FSUSB74_PIN_SEL1);
+	}
 
+	if ((index & 0x1) != 0) {
+		// set sel0
+		*FSUSB74_PORT_REGISTER(ODR) |= (1 << FSUSB74_PIN_SEL0);
+	} else {
+		// clear sel0
+		*FSUSB74_PORT_REGISTER(ODR) &= ~(1 << FSUSB74_PIN_SEL0);
+	}
 }
