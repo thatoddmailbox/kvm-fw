@@ -20,7 +20,7 @@ int main() {
 	uart_init();
 
 	fsusb74_init();
-	fsusb74_select_port(2);
+	// fsusb74_select_port(2);
 
 	uart_write_string("Hello from base\r\n");
 
