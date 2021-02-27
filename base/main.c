@@ -4,6 +4,7 @@
 #include "stm8/uart.h"
 
 #include "base/fsusb74.h"
+#include "base/tmds361b.h"
 
 char hex[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
 char hex_output[3];
@@ -28,18 +29,18 @@ int main() {
 
 	// select port 2
 	i2cbb_start();
-	i2cbb_write((0x2C << 1));
+	i2cbb_write(TMDS361B_ADDRESS);
 	i2cbb_write(0x01);
 	i2cbb_write(0x90);
 	i2cbb_stop();
 
 	// read status register
 	i2cbb_start();
-	i2cbb_write((0x2C << 1));
+	i2cbb_write(TMDS361B_ADDRESS);
 	i2cbb_write(0x02);
 	i2cbb_stop();
 	i2cbb_start();
-	i2cbb_write((0x2C << 1) | 1);
+	i2cbb_write(TMDS361B_ADDRESS | 1);
 	uint8_t value = i2cbb_read();
 	i2cbb_stop();
 	num_to_hex(value);
