@@ -30,14 +30,14 @@ int main() {
 	// select port 2
 	i2cbb_start();
 	i2cbb_write(TMDS361B_ADDRESS);
-	i2cbb_write(0x01);
+	i2cbb_write(TMDS361B_REGISTER_1);
 	i2cbb_write(0x90);
 	i2cbb_stop();
 
 	// read status register
 	i2cbb_start();
 	i2cbb_write(TMDS361B_ADDRESS);
-	i2cbb_write(0x02);
+	i2cbb_write(TMDS361B_REGISTER_2);
 	i2cbb_stop();
 	i2cbb_start();
 	i2cbb_write(TMDS361B_ADDRESS | 1);
