@@ -4,6 +4,9 @@
 #include <stdbool.h>
 #include <stdint.h>
 
+#define I2CBB_READ 0
+#define I2CBB_WRITE 1
+
 void i2cbb_init();
 void i2cbb_start();
 void i2cbb_stop();
