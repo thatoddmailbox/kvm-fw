@@ -40,7 +40,7 @@ int main() {
 	i2cbb_write(TMDS361B_REGISTER_2);
 	i2cbb_stop();
 	i2cbb_start();
-	i2cbb_write(TMDS361B_ADDRESS | 1);
+	i2cbb_write(TMDS361B_ADDRESS | I2CBB_WRITE);
 	uint8_t value = i2cbb_read();
 	i2cbb_stop();
 	num_to_hex(value);
