@@ -8,7 +8,7 @@ You will also need an ST-LINK adapter supported by `stm8flash`. (either the offi
 
 You should connect the ground, nRST, and SWIM pins from the board to your ST-LINK. You can also connect the 3.3V power pin if you want to power the board from your ST-LINK. If you do that, then make sure the board is not otherwise connected to power. Do _not_ connect multiple sources of power at the same time.
 
-If you want to read debug messages, then you should also connect a USB-to-UART adapter to the TX, RX, and GND pins. The UART is 8N1 at 57600 baud.
+If you want to read debug messages, then you should also connect a USB-to-UART adapter to the TX, RX, and GND pins, with the UART set to 8N1 at 57600 baud.
 
 ## Building
 Run the `./build.sh` script to build the firmware for both the base and keypad. The final output will be two Intel HEX files, `base/main.ihx` and `keypad/main.ihx`. The `./upload-base.sh` and `./upload-keypad.sh` scripts will upload the respective firmware to a connected STM8S003F3.
