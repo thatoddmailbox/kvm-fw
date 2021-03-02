@@ -31,7 +31,7 @@ int main() {
 	i2cbb_start();
 	i2cbb_write(TMDS361B_ADDRESS);
 	i2cbb_write(TMDS361B_REGISTER_1);
-	i2cbb_write((1 << 7) | (1 << 4));
+	i2cbb_write(TMDS361B_REGISTER_1_PORT1 | (1 << 4));
 	i2cbb_stop();
 
 	// read status register
