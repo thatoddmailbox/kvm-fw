@@ -18,6 +18,7 @@
 #define TMDS361B_REGISTER_1_OVS3 (1 << 4)
 #define TMDS361B_REGISTER_1_OVS1 ((1 << 5) | (1 << 4))
 
+void tmds361b_select_port(uint8_t port);
 void tmds361b_write_register(uint8_t address, uint8_t data);
 
 #endif
