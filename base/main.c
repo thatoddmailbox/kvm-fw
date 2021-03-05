@@ -28,11 +28,7 @@ int main() {
 	i2cbb_init();
 
 	// select port 2
-	i2cbb_start();
-	i2cbb_write(TMDS361B_ADDRESS);
-	i2cbb_write(TMDS361B_REGISTER_1);
-	i2cbb_write(TMDS361B_REGISTER_1_PORT1 | TMDS361B_REGISTER_1_OVS3);
-	i2cbb_stop();
+	tmds361b_select_port(1);
 
 	// read status register
 	i2cbb_start();
