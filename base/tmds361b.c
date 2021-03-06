@@ -1,4 +1,5 @@
 #include "base/tmds361b.h"
+#include "stm8/i2cbb.h"
 
 static const uint8_t port_flags[4] = {
 	TMDS361B_REGISTER_1_STANDBY,
