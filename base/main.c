@@ -27,7 +27,7 @@ int main() {
 
 	i2cbb_init();
 
-	// select port 2
+	// select port 1
 	tmds361b_select_port(1);
 
 	// read status register
