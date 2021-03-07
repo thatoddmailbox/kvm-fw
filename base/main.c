@@ -28,7 +28,22 @@ int main() {
 	i2cbb_init();
 
 	// select port 1
-	tmds361b_select_port(1);
+	uint8_t port = 1;
+	while (1) {
+		tmds361b_select_port(port);
+		port = (port == 1 ? 3 : 1);
+		for (uint8_t q = 0; q < 10; q++)
+		{
+			for (uint8_t i = 0; i < 100; i++)
+			{
+				for (uint8_t j = 0; j < 100; j++)
+				{
+					timer_delay_us(100);
+				}
+			}
+		}
+		uart_write_string("yay\r\n");
+	}
 
 	// read status register
 	i2cbb_start();
