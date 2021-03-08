@@ -1,7 +1,6 @@
 #include "stm8/i2c.h"
 #include "stm8/registers.h"
 #include "stm8/timer.h"
-#include "stm8/uart.h"
 
 void i2c_init_master() {
 	// i2c scl is PB4; i2c sda is PB5
