@@ -1,10 +1,12 @@
 #include "stm8/i2c.h"
 #include "stm8/registers.h"
+#include "stm8/timer.h"
+#include "stm8/uart.h"
 
 void i2c_init_master() {
 	// i2c scl is PB4; i2c sda is PB5
 	*PB_DDR |= (1 << 5) | (1 << 4); // set as outputs
-	*PB_CR1 &= ~((1 << 5) | (1 << 4)); // set as floating
+	*PB_CR1 &= ~((1 << 5) | (1 << 4)); // set as open drain
 	*PB_ODR |= (1 << 5) | (1 << 4); // set them high
 	*PB_CR2 |= (1 << 5) | (1 << 4); // set them to be speedy bois
 
