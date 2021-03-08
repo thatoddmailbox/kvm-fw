@@ -125,6 +125,10 @@
 #define I2C_SR3_BUSY (1 << 1)
 #define I2C_SR3_MSL (1 << 0)
 
+#define I2C_ITR_ITBUFEN (1 << 2)
+#define I2C_ITR_ITEVTEN (1 << 1)
+#define I2C_ITR_ITERREN (1 << 0)
+
 /*
  * UART1
  */
