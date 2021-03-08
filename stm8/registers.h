@@ -96,7 +96,7 @@
 #define I2C_CR1_ENGC (1 << 6)
 #define I2C_CR1_PE (1 << 0)
 
-#define I2C_CR2_SQRST (1 << 7)
+#define I2C_CR2_SWRST (1 << 7)
 #define I2C_CR2_POS (1 << 3)
 #define I2C_CR2_ACK (1 << 2)
 #define I2C_CR2_STOP (1 << 1)
