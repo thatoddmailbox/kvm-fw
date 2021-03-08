@@ -19,5 +19,5 @@ cd ..
 cd keypad
 sdcc -c $CFLAGS is31fl3218.c
 sdcc -c $CFLAGS pcal6416a.c
-sdcc $CFLAGS main.c is31fl3218.rel pcal6416a.rel ../stm8/i2c.rel ../stm8/uart.rel
+sdcc $CFLAGS main.c is31fl3218.rel pcal6416a.rel ../stm8/i2c.rel ../stm8/timer.rel ../stm8/uart.rel
 cd ..
