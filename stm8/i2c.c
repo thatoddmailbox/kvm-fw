@@ -28,6 +28,11 @@ void i2c_init_master() {
 		*PB_ODR |= (1 << 4);
 	}
 
+	// this delay is required to allow the bus to settle when the cable is connected
+	// not sure why -- maybe the increased capacitance or something??
+	// we really should have a buffer or redriver or something, but this works for now
+	timer_delay_us(10);
+
 	// release i2c reset
 	*I2C_CR2 &= ~I2C_CR2_SWRST;
 
