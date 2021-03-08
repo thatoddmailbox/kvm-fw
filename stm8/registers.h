@@ -102,6 +102,9 @@
 #define I2C_CR2_STOP (1 << 1)
 #define I2C_CR2_START (1 << 0)
 
+#define I2C_OARH_ADDMODE (1 << 7)
+#define I2C_OARH_ADDCONF (1 << 6)
+
 #define I2C_SR1_TXE (1 << 7)
 #define I2C_SR1_RXNE (1 << 6)
 #define I2C_SR1_STOPF (1 << 4)
