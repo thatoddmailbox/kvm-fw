@@ -1,5 +1,6 @@
 #include "stm8/clock.h"
 #include "stm8/i2c.h"
+#include "stm8/timer.h"
 #include "stm8/uart.h"
 
 #include "keypad/is31fl3218.h"
@@ -7,6 +8,7 @@
 
 int main() {
 	clock_init();
+	timer_init();
 	uart_init();
 	i2c_init_master();
 
