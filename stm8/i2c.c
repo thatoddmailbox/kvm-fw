@@ -2,6 +2,8 @@
 #include "stm8/registers.h"
 #include "stm8/timer.h"
 
+#include "shared/comms.h"
+
 void i2c_init_master() {
 	// i2c scl is PB4; i2c sda is PB5
 	*PB_DDR |= (1 << 5) | (1 << 4); // set as outputs
@@ -58,7 +60,7 @@ void i2c_init_master() {
 }
 
 void i2c_init_slave() {
-	*I2C_OARL = 0x42;
+	*I2C_OARL = BASE_I2C_ADDRESS;
 }
 
 void i2c_start() {
