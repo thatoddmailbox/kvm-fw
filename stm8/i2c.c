@@ -57,6 +57,10 @@ void i2c_init_master() {
 	*I2C_CR1 = I2C_CR1_PE;
 }
 
+void i2c_init_slave() {
+	*I2C_OARL = 0x42;
+}
+
 void i2c_start() {
 	*I2C_CR2 |= I2C_CR2_START;
 	while ((*I2C_SR1 & I2C_SR1_SB) == 0) {}
