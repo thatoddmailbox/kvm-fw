@@ -3,4 +3,6 @@
 
 #define BASE_I2C_ADDRESS 0x42
 
+#define BASE_REGISTER_GET_STATE 0x00
+
 #endif
