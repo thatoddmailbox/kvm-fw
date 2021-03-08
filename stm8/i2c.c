@@ -10,6 +10,27 @@ void i2c_init_master() {
 	*PB_ODR |= (1 << 5) | (1 << 4); // set them high
 	*PB_CR2 |= (1 << 5) | (1 << 4); // set them to be speedy bois
 
+	// hold i2c peripheral in reset
+	*I2C_CR2 |= I2C_CR2_SWRST;
+
+	// we need to reset the bus
+	// (before enabling the i2c peripheral, so we have control over the pins)
+	// do this by toggling the clock 16 times
+	for (uint8_t i = 0; i < 16; i++) {
+		// clock period of 10 us == 100 kHz
+
+		// clock low
+		timer_delay_us(5);
+		*PB_ODR &= ~(1 << 4);
+
+		// clock high
+		timer_delay_us(5);
+		*PB_ODR |= (1 << 4);
+	}
+
+	// release i2c reset
+	*I2C_CR2 &= ~I2C_CR2_SWRST;
+
 	// see section 21.4.2 of RM0016 for init procedure
 
 	// turn off i2c peripheral
