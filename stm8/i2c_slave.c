@@ -5,10 +5,16 @@
 #include "shared/comms.h"
 
 void i2c_slave_init() {
+	// turn off i2c peripheral
+	*I2C_CR1 = 0;
+
 	// need to set ADDCONF to 1
 	// leave everything else as 0 to use 7-bit addresses
 	*I2C_OARH = I2C_OARH_ADDCONF;
 	*I2C_OARL = BASE_I2C_ADDRESS;
 
 	i2c_shared_init();
+
+	// enable acknowledges
+	*I2C_CR2 = I2C_CR2_ACK;
 }
