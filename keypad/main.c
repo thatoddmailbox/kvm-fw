@@ -10,7 +10,7 @@ int main() {
 	clock_init();
 	timer_init();
 	uart_init();
-	i2c_init_master();
+	i2c_master_init();
 
 	uart_write_string("Hello\r\n");
 

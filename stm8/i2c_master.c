@@ -3,7 +3,7 @@
 #include "stm8/registers.h"
 #include "stm8/timer.h"
 
-void i2c_init_master() {
+void i2c_master_init() {
 	// i2c scl is PB4; i2c sda is PB5
 	*PB_DDR |= (1 << 5) | (1 << 4); // set as outputs
 	*PB_CR1 &= ~((1 << 5) | (1 << 4)); // set as open drain

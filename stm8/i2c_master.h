@@ -7,7 +7,7 @@
 #define I2C_WRITE 0x0
 #define I2C_READ 0x1
 
-void i2c_init_master();
+void i2c_master_init();
 void i2c_start();
 void i2c_stop();
 uint8_t i2c_read(bool should_ack);
