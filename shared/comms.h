@@ -1,5 +1,5 @@
-#ifndef _SHARED_COMMS
-#define _SHARED_COMMS
+#ifndef _SHARED_COMMS_H
+#define _SHARED_COMMS_H
 
 #define BASE_I2C_ADDRESS 0x42
 
