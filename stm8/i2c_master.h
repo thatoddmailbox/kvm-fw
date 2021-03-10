@@ -1,5 +1,5 @@
-#ifndef _STM8_I2C_H
-#define _STM8_I2C_H
+#ifndef _STM8_I2C_MASTER_H
+#define _STM8_I2C_MASTER_H
 
 #include <stdbool.h>
 #include <stdint.h>

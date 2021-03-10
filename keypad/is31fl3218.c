@@ -1,5 +1,5 @@
 #include "keypad/is31fl3218.h"
-#include "stm8/i2c.h"
+#include "stm8/i2c_master.h"
 
 bool is31fl3218_init() {
 	// reset its state

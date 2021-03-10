@@ -4,7 +4,8 @@ command -v sdcc >/dev/null 2>&1 || { echo >&2 "SDCC could not be found, is it in
 CFLAGS="--std-c11 -mstm8 -I../"
 
 cd stm8
-sdcc -c $CFLAGS i2c.c
+sdcc -c $CFLAGS i2c_master.c
+sdcc -c $CFLAGS i2c_slave.c
 sdcc -c $CFLAGS i2cbb.c
 sdcc -c $CFLAGS timer.c
 sdcc -c $CFLAGS uart.c
@@ -19,5 +20,5 @@ cd ..
 cd keypad
 sdcc -c $CFLAGS is31fl3218.c
 sdcc -c $CFLAGS pcal6416a.c
-sdcc $CFLAGS main.c is31fl3218.rel pcal6416a.rel ../stm8/i2c.rel ../stm8/timer.rel ../stm8/uart.rel
+sdcc $CFLAGS main.c is31fl3218.rel pcal6416a.rel ../stm8/i2c_master.rel ../stm8/timer.rel ../stm8/uart.rel
 cd ..

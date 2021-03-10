@@ -1,5 +1,5 @@
 #include "stm8/clock.h"
-#include "stm8/i2c.h"
+#include "stm8/i2c_master.h"
 #include "stm8/timer.h"
 #include "stm8/uart.h"
 

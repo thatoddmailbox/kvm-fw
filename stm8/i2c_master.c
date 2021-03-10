@@ -1,8 +1,6 @@
-#include "stm8/i2c.h"
+#include "stm8/i2c_master.h"
 #include "stm8/registers.h"
 #include "stm8/timer.h"
-
-#include "shared/comms.h"
 
 void i2c_init_master() {
 	// i2c scl is PB4; i2c sda is PB5
@@ -57,10 +55,6 @@ void i2c_init_master() {
 
 	// turn on i2c peripheral
 	*I2C_CR1 = I2C_CR1_PE;
-}
-
-void i2c_init_slave() {
-	*I2C_OARL = BASE_I2C_ADDRESS;
 }
 
 void i2c_start() {

@@ -1,5 +1,5 @@
 #include "keypad/pcal6416a.h"
-#include "stm8/i2c.h"
+#include "stm8/i2c_master.h"
 
 #define PCAL6416A_ADDRESS 0x40
 
