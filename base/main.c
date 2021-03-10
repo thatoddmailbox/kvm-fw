@@ -1,4 +1,5 @@
 #include "stm8/clock.h"
+#include "stm8/i2c_slave.h"
 #include "stm8/i2cbb.h"
 #include "stm8/timer.h"
 #include "stm8/uart.h"
@@ -19,6 +20,7 @@ int main() {
 	clock_init();
 	timer_init();
 	uart_init();
+	i2c_slave_init();
 
 	fsusb74_init();
 	fsusb74_select_port(2);
@@ -26,6 +28,22 @@ int main() {
 	uart_write_string("Hello from base\r\n");
 
 	i2cbb_init();
+
+	tmds361b_select_port(1);
+
+	while (1) {
+		// wait for ADDR bit to go high
+		while ((*I2C_SR1 & I2C_SR1_ADDR) == 0) {}
+
+		// we got something!
+		// read SR3 to clear the bit
+		// (we don't use dual addresses so ignore the result)
+		(void) *I2C_SR3;
+
+		uart_write_string("got message\r\n");
+	}
+
+	/*
 
 	// select port 1
 	uint8_t port = 1;
@@ -67,7 +85,7 @@ int main() {
 				timer_delay_us(100);
 			}
 		}
-	}
+	}*/
 
 	return 0;
 }
