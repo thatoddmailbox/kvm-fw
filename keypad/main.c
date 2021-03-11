@@ -29,10 +29,16 @@ int main() {
 
 	char c = '1';
 	uint16_t led_state = 0;
+	uint16_t previous_pins = 0;
 	while (1) {
 		uint16_t pins = pcal6416a_read_pins();
-		if (pins != 0) {
-			led_state |= pins;
+
+		// we want to find who changed and also used to be high
+		uint16_t changes = (pins ^ previous_pins) & previous_pins;
+		previous_pins = pins;
+
+		if (changes != 0) {
+			led_state ^= changes;
 			is31fl3218_set_leds(led_state & 0x1FF);
 			is31fl3218_update();
 
