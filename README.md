@@ -17,3 +17,5 @@ Run the `./build.sh` script to build the firmware for both the base and keypad. 
 
 ## Fork of stm8flash
 For this project, I [forked stm8flash](https://github.com/thatoddmailbox/stm8flash) to allow selecting an ST-LINK adapter based on its port number. This was done as part of the serial number matching code. For example, to select the adapter on port 1, set the serial number `port:1`. You can use a tool like [lsusbtree](https://github.com/thatoddmailbox/lsusbtree) to see the port numbers.
+
+The instructions to set up the fork are the same as the normal program; `./configure`, then `make`, then `sudo make install`.
