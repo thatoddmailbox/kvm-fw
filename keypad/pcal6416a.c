@@ -56,7 +56,7 @@ uint8_t pcal6416a_read_reg(uint8_t reg) {
 
 	i2c_start();
 	i2c_write_address(PCAL6416A_ADDRESS | I2C_READ);
-	uint8_t value = i2c_read(false);
+	uint8_t value = i2c_master_read(false);
 	i2c_stop();
 	return value;
 }

@@ -54,7 +54,7 @@ void i2c_stop() {
 	while ((*I2C_SR3 & I2C_SR3_MSL) == 0) {}
 }
 
-uint8_t i2c_read(bool should_ack) {
+uint8_t i2c_master_read(bool should_ack) {
 	if (should_ack) {
 		*I2C_CR2 |= I2C_CR2_ACK;
 	} else {

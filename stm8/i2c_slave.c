@@ -18,3 +18,8 @@ void i2c_slave_init() {
 	// enable acknowledges
 	*I2C_CR2 = I2C_CR2_ACK;
 }
+
+uint8_t i2c_slave_read() {
+	while ((*I2C_SR1 & I2C_SR1_RXNE) == 0) {}
+	return *I2C_DR;
+}
