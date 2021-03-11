@@ -36,11 +36,20 @@ int main() {
 		while ((*I2C_SR1 & I2C_SR1_ADDR) == 0) {}
 
 		// we got something!
-		// read SR3 to clear the bit
-		// (we don't use dual addresses so ignore the result)
-		(void) *I2C_SR3;
-
-		uart_write_string("got message\r\n");
+		// what direction is it?
+		bool should_write = ((*I2C_SR3 & I2C_SR3_TRA) != 0);
+		uart_write_string(should_write ? "should write\r\n" : "should read\r\n");
+		if (should_write) {
+			// data is being requested from us
+			// TODO
+		} else {
+			// we are getting some data
+			// read
+			uint8_t byte = i2c_slave_read();
+			num_to_hex(byte);
+			uart_write_string(hex_output);
+			uart_write_string("\r\n");
+		}
 	}
 
 	/*
