@@ -20,4 +20,4 @@ For this project, I [forked stm8flash](https://github.com/thatoddmailbox/stm8fla
 
 This was done because some clone ST-LINK adapters do not have a reliable serial number field. If you're using the official ST-LINK adapter, you can just use the serial number.
 
-The instructions to set up the fork are the same as the normal program; `./configure`, then `make`, then `sudo make install`.
+The instructions to set up the fork are the same as the normal program: `./configure`, then `make`, then `sudo make install`.
