@@ -42,6 +42,63 @@ int main() {
 			is31fl3218_set_leds(led_state & 0x1FF);
 			is31fl3218_update();
 
+			//			 hdmi A | hdmi B | usb
+			//	port 1 | 0		  1		   2
+			//	port 2 | 3		  4		   5
+			//	port 3 | 6		  7		   8
+
+			uint8_t hdmi_a = 0;
+			uint8_t hdmi_b = 0;
+			uint8_t usb = 0;
+
+			if ((changes & (1 << 0)) != 0) {
+				// hdmi A, port 1
+				hdmi_a = 1;
+			} else if ((changes & (1 << 3)) != 0) {
+				// hdmi A, port 2
+				hdmi_a = 2;
+			} else if ((changes & (1 << 6)) != 0) {
+				// hdmi A, port 3
+				hdmi_a = 3;
+			}
+
+			if ((changes & (1 << 1)) != 0) {
+				// hdmi B, port 1
+				hdmi_b = 1;
+			} else if ((changes & (1 << 4)) != 0) {
+				// hdmi B, port 2
+				hdmi_b = 2;
+			} else if ((changes & (1 << 7)) != 0) {
+				// hdmi B, port 3
+				hdmi_b = 3;
+			}
+
+			if ((changes & (1 << 2)) != 0) {
+				// usb, port 1
+				usb = 1;
+			} else if ((changes & (1 << 5)) != 0) {
+				// usb, port 2
+				usb = 2;
+			} else if ((changes & (1 << 8)) != 0) {
+				// usb, port 3
+				usb = 3;
+			}
+
+			i2c_start();
+			i2c_write_address(BASE_I2C_ADDRESS);
+			i2c_write(hdmi_a);
+			i2c_stop();
+
+			i2c_start();
+			i2c_write_address(BASE_I2C_ADDRESS);
+			i2c_write(hdmi_b);
+			i2c_stop();
+
+			i2c_start();
+			i2c_write_address(BASE_I2C_ADDRESS);
+			i2c_write(usb);
+			i2c_stop();
+
 			uart_write_byte(c);
 			uart_write_string("\r\n");
 			c++;
