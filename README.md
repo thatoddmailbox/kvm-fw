@@ -8,7 +8,7 @@ You may want to use [my fork of stm8flash](https://github.com/thatoddmailbox/stm
 
 You will also need an ST-LINK adapter supported by `stm8flash`. (either the official one or a clone will do) To test that the adapter and its connection works, you can try to read data from the STM8S003F3, like so: `stm8flash -c stlinkv2 -p stm8s003f3 -s flash -r test.bin`. If you are not using an `stlinkv2` adapter, then you will probably need to edit the upload scripts to change the adapter type passed to `stm8flash`.
 
-You should connect the ground, nRST, and SWIM pins from the board to your ST-LINK. You can also connect the 3.3V power pin if you want to power the board from your ST-LINK. If you do that, then make sure the board is not otherwise connected to power. Do _not_ connect multiple sources of power at the same time. For the base, this means not plugging in any HDMI cables, as they can backfeed +5V power!
+You should connect the ground, nRST, and SWIM pins from the board to your ST-LINK. You can also connect the 3.3V power pin if you want to power the board from your ST-LINK. If you do that, then make sure the board is not otherwise connected to power. Do _not_ connect multiple sources of power at the same time. For the base, this means not plugging in any HDMI cables, as they can backfeed +5V power! The base does have a +5V pin that you can connect to the ST-LINK's +5V rail instead.
 
 If you want to read debug messages, then you should also connect a USB-to-UART adapter to the TX, RX, and GND pins, with the UART set to 8N1 at 57600 baud.
 
