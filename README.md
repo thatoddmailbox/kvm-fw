@@ -16,7 +16,7 @@ If you want to read debug messages, then you should also connect a USB-to-UART a
 Run the `./build.sh` script to build the firmware for both the base and keypad. The final output will be two Intel HEX files, `base/main.ihx` and `keypad/main.ihx`. The `./upload-base.sh` and `./upload-keypad.sh` scripts will upload the respective firmware to a connected STM8S003F3.
 
 ## Fork of stm8flash
-For this project, I [forked stm8flash](https://github.com/thatoddmailbox/stm8flash#readme) to allow selecting an ST-LINK adapter based on its USB port number.
+For this project, I [forked stm8flash](https://github.com/thatoddmailbox/stm8flash) to allow selecting an ST-LINK adapter based on its USB port number.
 
 This was done as a slight hack on top of the existing serial number matching code. For example, to select the adapter on port 1, set the serial number `port:1`. You can use a tool like [lsusbtree](https://github.com/thatoddmailbox/lsusbtree#readme) to see the port numbers.
 
