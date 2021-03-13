@@ -83,18 +83,7 @@ int main() {
 	i2cbb_stop();
 	num_to_hex(value);
 	uart_write_string(hex_output);
-	uart_write_string("\r\n");
-
-	while (1) {
-		uart_write_string("yay\r\n");
-		for (uint8_t i = 0; i < 100; i++)
-		{
-			for (uint8_t j = 0; j < 100; j++)
-			{
-				timer_delay_us(100);
-			}
-		}
-	}*/
+	uart_write_string("\r\n");*/
 
 	return 0;
 }
