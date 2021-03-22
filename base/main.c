@@ -24,14 +24,18 @@ int main() {
 	uart_init();
 	i2c_slave_init();
 
+	uint8_t hdmi_a = 1;
+	uint8_t hdmi_b = 1;
+	uint8_t usb = 3;
+
 	fsusb74_init();
-	fsusb74_select_port(2);
+	fsusb74_select_port(usb - 1);
 
 	uart_write_string("Hello from base\r\n");
 
 	i2cbb_init();
 
-	tmds361b_select_port(1);
+	tmds361b_select_port(hdmi_a);
 
 	while (1) {
 		// wait for ADDR bit to go high
@@ -59,7 +63,9 @@ int main() {
 				// set hdmi a
 				uart_write_string("set hdmi A to ");
 				uart_write_string(hex_output);
-				tmds361b_select_port(data_value);
+
+				hdmi_a = data_value;
+				tmds361b_select_port(hdmi_a);
 			} else if (data_command == BASE_COMMAND_SET_HDMI_B) {
 				// set hdmi c
 				uart_write_string("set hdmi B to ");
