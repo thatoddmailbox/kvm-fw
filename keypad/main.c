@@ -100,6 +100,7 @@ int main() {
 		}
 	}
 
+	/*
 	uint8_t b = 0;
 	bool dir = true;
 	while (1) {
@@ -121,6 +122,7 @@ int main() {
 			__asm__("nop");
 		}
 	}
+	*/
 
 	return 0;
 }
