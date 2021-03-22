@@ -78,20 +78,26 @@ int main() {
 				usb = 3;
 			}
 
-			i2c_start();
-			i2c_write_address(BASE_I2C_ADDRESS | I2C_WRITE);
-			i2c_write(BASE_COMMAND_SET_HDMI_A | hdmi_a);
-			i2c_stop();
+			if (hdmi_a) {
+				i2c_start();
+				i2c_write_address(BASE_I2C_ADDRESS | I2C_WRITE);
+				i2c_write(BASE_COMMAND_SET_HDMI_A | hdmi_a);
+				i2c_stop();
+			}
 
-			i2c_start();
-			i2c_write_address(BASE_I2C_ADDRESS);
-			i2c_write(BASE_COMMAND_SET_HDMI_B | hdmi_b);
-			i2c_stop();
+			if (hdmi_b) {
+				i2c_start();
+				i2c_write_address(BASE_I2C_ADDRESS);
+				i2c_write(BASE_COMMAND_SET_HDMI_B | hdmi_b);
+				i2c_stop();
+			}
 
-			i2c_start();
-			i2c_write_address(BASE_I2C_ADDRESS);
-			i2c_write(BASE_COMMAND_SET_USB | usb);
-			i2c_stop();
+			if (usb) {
+				i2c_start();
+				i2c_write_address(BASE_I2C_ADDRESS);
+				i2c_write(BASE_COMMAND_SET_USB | usb);
+				i2c_stop();
+			}
 
 			uart_write_byte(c);
 			uart_write_string("\r\n");
