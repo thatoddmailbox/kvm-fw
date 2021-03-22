@@ -70,7 +70,7 @@ int main() {
 				hdmi_a = data_value;
 				tmds361b_select_port(hdmi_a);
 			} else if (data_command == BASE_COMMAND_SET_HDMI_B) {
-				// set hdmi c
+				// set hdmi b
 				uart_write_string("set hdmi B to ");
 				uart_write_string(hex_output);
 			} else if (data_command == BASE_COMMAND_SET_USB) {
