@@ -8,6 +8,21 @@
 
 #include "shared/comms.h"
 
+void update_leds(uint8_t base_hdmi_a, uint8_t base_hdmi_b, uint8_t base_usb) {
+	//			 hdmi A | hdmi B | usb
+	//	port 1 | 0		  1		   2
+	//	port 2 | 3		  4		   5
+	//	port 3 | 6		  7		   8
+	uint16_t led_state = (
+		(1 << (base_hdmi_a + base_hdmi_a + base_hdmi_a - 3)) |
+		(1 << (base_hdmi_b + base_hdmi_b + base_hdmi_b - 3 + 1)) |
+		(1 << (base_usb + base_usb + base_usb - 3 + 2))
+	);
+
+	is31fl3218_set_leds(led_state & 0x1FF);
+	is31fl3218_update();
+}
+
 int main() {
 	clock_init();
 	timer_init();
@@ -21,6 +36,22 @@ int main() {
 
 	is31fl3218_set_brightness(0x1);
 
+	// read the current state
+	i2c_start();
+	i2c_write_address(BASE_I2C_ADDRESS | I2C_WRITE);
+	i2c_write(BASE_COMMAND_GET_STATE);
+	i2c_stop();
+	i2c_start();
+	i2c_write_address(BASE_I2C_ADDRESS | I2C_READ);
+	uint8_t base_status = i2c_master_read(false);
+	i2c_stop();
+
+	uint8_t base_hdmi_a = (base_status >> 4) & 0x3;
+	uint8_t base_hdmi_b = (base_status >> 2) & 0x3;
+	uint8_t base_usb = base_status & 0x3;
+
+	update_leds(base_hdmi_a, base_hdmi_b, base_usb);
+
 	uint16_t led_state = 0;
 	uint16_t previous_pins = 0;
 	while (1) {
@@ -31,10 +62,6 @@ int main() {
 		previous_pins = pins;
 
 		if (changes != 0) {
-			led_state ^= changes;
-			is31fl3218_set_leds(led_state & 0x1FF);
-			is31fl3218_update();
-
 			//			 hdmi A | hdmi B | usb
 			//	port 1 | 0		  1		   2
 			//	port 2 | 3		  4		   5
@@ -82,6 +109,7 @@ int main() {
 				i2c_write_address(BASE_I2C_ADDRESS | I2C_WRITE);
 				i2c_write(BASE_COMMAND_SET_HDMI_A | hdmi_a);
 				i2c_stop();
+				base_hdmi_a = hdmi_a;
 			}
 
 			if (hdmi_b) {
@@ -89,6 +117,7 @@ int main() {
 				i2c_write_address(BASE_I2C_ADDRESS);
 				i2c_write(BASE_COMMAND_SET_HDMI_B | hdmi_b);
 				i2c_stop();
+				base_hdmi_b = hdmi_b;
 			}
 
 			if (usb) {
@@ -96,7 +125,10 @@ int main() {
 				i2c_write_address(BASE_I2C_ADDRESS);
 				i2c_write(BASE_COMMAND_SET_USB | usb);
 				i2c_stop();
+				base_usb = usb;
 			}
+
+			update_leds(base_hdmi_a, base_hdmi_b, base_usb);
 		}
 	}
 
