@@ -8,10 +8,10 @@
 // they are both on port C
 // there's also nothing else on port C, so we can assume full control over it
 
-#define I2CBB_A_SCL 6
-#define I2CBB_A_SDA 7
-#define I2CBB_B_SCL 4
-#define I2CBB_B_SDA 5
+#define I2CBB_A_SCL 4
+#define I2CBB_A_SDA 5
+#define I2CBB_B_SCL 6
+#define I2CBB_B_SDA 7
 
 // aliases to gpio registers for port C
 #define I2CBB_ODR 0x00500A
