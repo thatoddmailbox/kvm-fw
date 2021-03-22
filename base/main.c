@@ -7,6 +7,8 @@
 #include "base/fsusb74.h"
 #include "base/tmds361b.h"
 
+#include "shared/comms.h"
+
 char hex[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
 char hex_output[3];
 
@@ -38,16 +40,34 @@ int main() {
 		// we got something!
 		// what direction is it?
 		bool should_write = ((*I2C_SR3 & I2C_SR3_TRA) != 0);
-		uart_write_string(should_write ? "should write\r\n" : "should read\r\n");
+		uart_write_string(should_write ? "\r\nshould write\r\n" : "\r\nshould read\r\n");
 		if (should_write) {
 			// data is being requested from us
 			// TODO
 		} else {
 			// we are getting some data
-			// read
-			uint8_t byte = i2c_slave_read();
-			num_to_hex(byte);
-			uart_write_string(hex_output);
+			uint8_t data = i2c_slave_read();
+
+			uint8_t data_command = data & ~0x3;
+			uint8_t data_value = data & 0x3;
+
+			num_to_hex(data_value);
+
+			if (data == BASE_COMMAND_GET_STATE) {
+				// TODO: get state
+			} else if (data_command == BASE_COMMAND_SET_HDMI_A) {
+				// set hdmi a
+				uart_write_string("set hdmi A to ");
+				uart_write_string(hex_output);
+			} else if (data_command == BASE_COMMAND_SET_HDMI_B) {
+				// set hdmi c
+				uart_write_string("set hdmi B to ");
+				uart_write_string(hex_output);
+			} else if (data_command == BASE_COMMAND_SET_USB) {
+				// set usb
+				uart_write_string("set usb to ");
+				uart_write_string(hex_output);
+			}
 			uart_write_string("\r\n");
 		}
 	}
