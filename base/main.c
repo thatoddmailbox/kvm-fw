@@ -47,7 +47,7 @@ int main() {
 		uart_write_string(should_write ? "\r\nshould write\r\n" : "\r\nshould read\r\n");
 		if (should_write) {
 			// data is being requested from us
-			// TODO
+			i2c_slave_write(hdmi_a << 4 | hdmi_b << 2 | usb);
 		} else {
 			// we are getting some data
 			uint8_t data = i2c_slave_read();
@@ -58,7 +58,10 @@ int main() {
 			num_to_hex(data_value);
 
 			if (data == BASE_COMMAND_GET_STATE) {
-				// TODO: get state
+				// currently, we have to do nothing
+				// we just assume all reads (when we should write) are for the state
+				// eventually, at some point, there might be other commands
+				uart_write_string("get state");
 			} else if (data_command == BASE_COMMAND_SET_HDMI_A) {
 				// set hdmi a
 				uart_write_string("set hdmi A to ");
