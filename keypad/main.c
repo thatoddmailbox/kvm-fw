@@ -21,7 +21,6 @@ int main() {
 
 	is31fl3218_set_brightness(0x1);
 
-	char c = '1';
 	uint16_t led_state = 0;
 	uint16_t previous_pins = 0;
 	while (1) {
@@ -97,13 +96,6 @@ int main() {
 				i2c_write_address(BASE_I2C_ADDRESS);
 				i2c_write(BASE_COMMAND_SET_USB | usb);
 				i2c_stop();
-			}
-
-			uart_write_byte(c);
-			uart_write_string("\r\n");
-			c++;
-			if (c >= '9') {
-				c = '1';
 			}
 		}
 	}
