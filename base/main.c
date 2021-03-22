@@ -77,6 +77,9 @@ int main() {
 				// set usb
 				uart_write_string("set usb to ");
 				uart_write_string(hex_output);
+
+				usb = data_value;
+				fsusb74_select_port(usb - 1);
 			}
 			uart_write_string("\r\n");
 		}
