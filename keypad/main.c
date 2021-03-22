@@ -21,12 +21,6 @@ int main() {
 
 	is31fl3218_set_brightness(0x1);
 
-	i2c_start();
-	bool ack = i2c_write_address(BASE_I2C_ADDRESS);
-	uart_write_string(ack ? "ack\r\n" : "nak\r\n");
-	i2c_write(0x5E);
-	i2c_stop();
-
 	char c = '1';
 	uint16_t led_state = 0;
 	uint16_t previous_pins = 0;
