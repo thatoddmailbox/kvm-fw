@@ -5,5 +5,6 @@
 
 void i2c_slave_init();
 uint8_t i2c_slave_read();
+void i2c_slave_write(uint8_t data);
 
 #endif

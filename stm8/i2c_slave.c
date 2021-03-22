@@ -23,3 +23,10 @@ uint8_t i2c_slave_read() {
 	while ((*I2C_SR1 & I2C_SR1_RXNE) == 0) {}
 	return *I2C_DR;
 }
+
+void i2c_slave_write(uint8_t data) {
+	while ((*I2C_SR1 & I2C_SR1_TXE) == 0) {}
+	*I2C_DR = data;
+	while ((*I2C_SR2 & I2C_SR2_AF) == 0) {}
+	*I2C_SR2 &= ~I2C_SR2_AF;
+}
