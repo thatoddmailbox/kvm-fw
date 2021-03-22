@@ -59,6 +59,7 @@ int main() {
 				// set hdmi a
 				uart_write_string("set hdmi A to ");
 				uart_write_string(hex_output);
+				tmds361b_select_port(data_value);
 			} else if (data_command == BASE_COMMAND_SET_HDMI_B) {
 				// set hdmi c
 				uart_write_string("set hdmi B to ");
