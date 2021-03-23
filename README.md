@@ -1,5 +1,5 @@
 # kvm-fw
-The firmware for the KVM switch I built. Note that this repository has the code for both the [base](https://github.com/thatoddmailbox/kvm-base) and the [keypad](https://github.com/thatoddmailbox/kvm-keypad).
+The firmware for the open-source HDMI KVM switch I built. Note that this repository has the code for both the [base](https://github.com/thatoddmailbox/kvm-base) and the [keypad](https://github.com/thatoddmailbox/kvm-keypad).
 
 ## Setup
 Download [SDCC](http://sdcc.sourceforge.net/index.php#Download) (tested with version 4.0) and [stm8flash](https://github.com/vdudouyt/stm8flash). Ensure that both commands are in your PATH and working, meaning the `sdcc` and `stm8flash` commands both do something.
