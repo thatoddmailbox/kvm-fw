@@ -1,7 +1,7 @@
 # kvm-fw
 The firmware for the [open-source HDMI KVM switch I built](https://github.com/thatoddmailbox/kvm#kvm). Note that this repository has the code for both the [base](https://github.com/thatoddmailbox/kvm-base) and the [keypad](https://github.com/thatoddmailbox/kvm-keypad).
 
-There is also some generic stm8 code in the `stm8/` folder, to set up and use various peripherals. Finally, there are some shared definitions in the `shared/` folder, which are used for the I2C communication between the base and keypad.
+There's also some generic STM8 code in the `stm8/` folder, which is used to set up and access various peripherals. Finally, there are some shared definitions in the `shared/` folder, which are used for the I2C communication between the base and keypad.
 
 ## Setup
 Download [SDCC](http://sdcc.sourceforge.net/index.php#Download) (tested with version 4.0) and [stm8flash](https://github.com/vdudouyt/stm8flash). Ensure that both commands are in your PATH and working, meaning the `sdcc` and `stm8flash` commands both do something.
