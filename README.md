@@ -22,6 +22,6 @@ For this project, I [forked stm8flash](https://github.com/thatoddmailbox/stm8fla
 
 This was done as a slight hack on top of the existing serial number matching code. For example, to select the adapter on port 1, set the serial number `port:1`. You can use a tool like [lsusbtree](https://github.com/thatoddmailbox/lsusbtree#readme) to see the port numbers.
 
-This was done because some clone ST-LINK adapters do not have a reliable serial number field. If you're using the official ST-LINK adapter, you can just use the serial number.
+This was done because some clone ST-LINK adapters do not have a reliable serial number field, and so the port number is used as an alternative form of identifier. If you're using the official ST-LINK adapter, you can just use the serial number.
 
 The instructions to set up the fork are the same as the normal program: `./configure`, then `make`, then `sudo make install`.
